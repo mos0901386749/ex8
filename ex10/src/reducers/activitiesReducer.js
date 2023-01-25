@@ -8,6 +8,7 @@ const initalState = [
 ];
 
 const activitiesReducer = (state = initalState, action) => {
+  //state ปุจจุบัน กับ action
   const { type, payload } = action;
   switch (type) {
     case "CREATE_ACTIVITY":
@@ -23,6 +24,8 @@ const activitiesReducer = (state = initalState, action) => {
       const copyState = [...state];
       const i = copyState.findIndex((x) => x.id === payload.id);
       copyState.splice(i, 1);
+      
+      return copyState.filter((activity) => activity.id !== payload.id);
     default:
       return state;
   }
